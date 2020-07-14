@@ -1,7 +1,8 @@
 {
-  "name": "fer-cap02-aula02",
-  "version": "0.1.0",
+  "name": "react-client",
+  "version": "1.0.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.3.2",
@@ -10,6 +11,7 @@
     "materialize-css": "1.0.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-modal": "3.11.2",
     "react-scripts": "3.4.1"
   },
   "scripts": {
