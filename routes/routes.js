@@ -1,7 +1,17 @@
 const express = require('express');
 const transactionRouter = express.Router();
-// res.status(404).json
-// {
-//   "error": "É necessário informar o parâmetro \"period"\, cujo valor deve estar no formato yyyy-mm"
-// }
+const {
+  getPeriodTransactions,
+  create,
+  update,
+  remove,
+} = require('../services/transactionService');
+
+transactionRouter
+  .route('/')
+  .get(getPeriodTransactions)
+  .post(create)
+  .put(update)
+  .delete(remove);
+
 module.exports = transactionRouter;
