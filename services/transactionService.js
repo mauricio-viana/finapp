@@ -19,9 +19,9 @@ const getPeriodTransactions = async (req, res) => {
 
   try {
     const query = { yearMonth: period };
-    const transctions = await TransactionModel.find(query);
+    const transactions = await TransactionModel.find(query);
 
-    res.status(200).send({ length: transctions.length, transctions });
+    res.status(200).send({ length: transactions.length, transactions });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -51,8 +51,8 @@ const create = async (req, res) => {
     type,
   });
   try {
-    const transction = await newTransaction.save(newTransaction);
-    res.status(201).json(transction);
+    const transaction = await newTransaction.save(newTransaction);
+    res.status(201).json(transaction);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
