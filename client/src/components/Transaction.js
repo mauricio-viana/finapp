@@ -1,5 +1,6 @@
 import React from 'react';
 import { formatMoney } from '../helpers/formatNumber';
+import Action from './Action';
 
 export default function Transaction({ data }) {
   const {
@@ -14,8 +15,23 @@ export default function Transaction({ data }) {
     yearMoth,
     yearMonthDay,
   } = data;
+
+  const colorTransaction = {
+    credit: 'card-transaction deep-orange lighten-2',
+    debit: 'deep-orange lighten-2',
+  };
+  const handleActionClick = (id, type) => {
+    //   const grade = grades.find((grade) => grade.id === id);
+    //   if (type === 'delete') {
+    //     onDelete(grade);
+    //     return;
+    //   }
+    //   onPersist(grade);
+    console.log(`clicado id: ${(id, type)}`);
+  };
+
   return (
-    <div className="card-transaction">
+    <div className={colorTransaction.credit}>
       <span className="day-card">{day.toString().padStart(2, '0')}</span>
       <div className="body-card">
         <div className="card-description">
@@ -27,26 +43,8 @@ export default function Transaction({ data }) {
         </div>
       </div>
       <div className="div-icons">
-        <span
-          class="material-icons"
-          style={{
-            fontSize: '1.2rem',
-            cursor: 'pointer',
-            marginRight: '10px',
-          }}
-        >
-          edit
-        </span>
-        <span
-          class="material-icons"
-          style={{
-            fontSize: '1.2rem',
-            cursor: 'pointer',
-            marginRight: '10px',
-          }}
-        >
-          delete
-        </span>
+        <Action id={_id} type="edit" onActionClick={handleActionClick} />
+        <Action id={_id} type="delete" onActionClick={handleActionClick} />
       </div>
     </div>
   );
