@@ -11,3 +11,49 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card-transaction {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 5px 0px;
+  /* background-color: rgb(161, 240, 220); */
+}
+
+.day-card {
+  margin-right: 8px;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.body-card {
+  display: flex;
+  flex: 7 1 0%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-description {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.value-card {
+  text-align: right;
+  font-size: 1.8rem;
+}
+
+.div-icons {
+  margin-left: 10px;
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
