@@ -13,12 +13,12 @@ async function create(data) {
 }
 
 async function update(data) {
-  const response = await axios.put(`${API_URL}?_id=${data.id}`, data);
+  const response = await axios.put(`${API_URL}?_id=${data._id}`, data);
   return response.data;
 }
 
 async function remove(data) {
-  const response = await axios.delete(`${API_URL}?_id=${data.id}`);
+  const response = await axios.delete(`${API_URL}?_id=${data._id}`);
   return response.data;
 }
 
