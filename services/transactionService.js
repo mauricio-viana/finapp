@@ -28,27 +28,19 @@ const getPeriodTransactions = async (req, res) => {
 };
 
 const create = async (req, res) => {
-  const {
-    description,
-    value,
-    category,
-    year,
-    month,
-    day,
-    yearMonth,
-    yearMonthDay,
-    type,
-  } = req.body;
+  const { description, value, category, yearMonthDay, type } = req.body;
+  const dateResult = yearMonthDay.split('-');
+
   const newTransaction = new TransactionModel({
     description,
     value,
     category,
-    year,
-    month,
-    day,
-    yearMonth,
-    yearMonthDay,
     type,
+    yearMonthDay,
+    yearMonth: `${dateResult[0]}-${dateResult[1]}`,
+    year: dateResult[0],
+    month: dateResult[1],
+    day: dateResult[2],
   });
   try {
     const transaction = await newTransaction.save(newTransaction);
