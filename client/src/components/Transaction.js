@@ -2,32 +2,20 @@ import React from 'react';
 import { formatMoney } from '../helpers/formatNumber';
 import Action from './Action';
 
-export default function Transaction({ data }) {
-  const {
-    _id,
-    category,
-    day,
-    description,
-    month,
-    type,
-    value,
-    year,
-    yearMoth,
-    yearMonthDay,
-  } = data;
+export default function Transaction({ data, onRemoveData, onEdit }) {
+  const { _id, category, day, description, value, yearMonthDay } = data;
 
   const colorTransaction = {
     credit: 'card-transaction deep-orange lighten-2',
     debit: 'deep-orange lighten-2',
   };
+
   const handleActionClick = (id, type) => {
-    //   const grade = grades.find((grade) => grade.id === id);
-    //   if (type === 'delete') {
-    //     onDelete(grade);
-    //     return;
-    //   }
-    //   onPersist(grade);
-    console.log(`clicado id: ${(id, type)}`);
+    if (type === 'delete') {
+      onRemoveData(id);
+      return;
+    }
+    onEdit({ _id, category, day, description, value, yearMonthDay });
   };
 
   return (
