@@ -27,21 +27,28 @@ const getPeriodTransactions = async (req, res) => {
   }
 };
 
-const create = async (req, res) => {
-  const { description, value, category, yearMonthDay, type } = req.body;
+const objectStructure = (objectReq) => {
+  const { description, value, category, yearMonthDay, type } = objectReq;
   const dateResult = yearMonthDay.split('-');
 
-  const newTransaction = new TransactionModel({
+  const objectData = {
     description,
     value,
     category,
     type,
     yearMonthDay,
     yearMonth: `${dateResult[0]}-${dateResult[1]}`,
-    year: dateResult[0],
-    month: dateResult[1],
-    day: dateResult[2],
-  });
+    year: Number(dateResult[0]),
+    month: Number(dateResult[1]),
+    day: Number(dateResult[2]),
+  };
+  console.log(objectData);
+  return objectData;
+};
+
+const create = async (req, res) => {
+  const data = objectStructure(req.body);
+  const newTransaction = new TransactionModel(data);
   try {
     const transaction = await newTransaction.save(newTransaction);
     res.status(201).json(transaction);
@@ -59,7 +66,7 @@ const update = async (req, res) => {
     });
   }
 
-  const updateData = req.body;
+  const updateData = objectStructure(req.body);
   if (Object.entries(updateData).length === 0) {
     return res.status(400).json({
       message: 'Dados para atualização vazio',
@@ -68,9 +75,10 @@ const update = async (req, res) => {
 
   try {
     const query = { _id };
-    await TransactionModel.updateOne(query, updateData);
-
-    res.status(200).json({ message: 'Dados atualizados!' });
+    const data = await TransactionModel.findByIdAndUpdate(query, updateData, {
+      new: true,
+    });
+    res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
