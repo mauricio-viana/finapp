@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { getPeriod } from '../helpers/monthsYears';
 
 const periodMonthsYears = getPeriod();
 
-export default function SelectPeriod({ onChangeSelected }) {
-  const [valueSelected, setValueSelected] = useState('2020-07');
-
+export default function SelectPeriod({ onChangeSelected, period }) {
   const handleChange = (event) => {
     const newPeriod = event.target.value;
-    setValueSelected(newPeriod);
     onChangeSelected(newPeriod);
   };
 
@@ -31,7 +28,7 @@ export default function SelectPeriod({ onChangeSelected }) {
       </button>
       <select
         onChange={handleChange}
-        value={valueSelected}
+        value={period}
         className="browser-default"
         style={{
           width: '150px',
