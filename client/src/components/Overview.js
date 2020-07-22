@@ -1,12 +1,12 @@
 import React from 'react';
 import { formatMoney } from '../helpers/formatNumber';
 
-export default function Overview({ filterList }) {
+export default function Overview({ listFilter }) {
   let totalTransaction = 0;
   let totalCredit = 0;
   let totalDebit = 0;
 
-  filterList.forEach(({ type, value }) => {
+  listFilter.forEach(({ type, value }) => {
     totalTransaction++;
     if (type === '+') totalCredit += value;
     if (type === '-') totalDebit += value;
@@ -15,7 +15,8 @@ export default function Overview({ filterList }) {
   const balance = totalCredit - totalDebit;
 
   return (
-    <div>
+    <div className="col s6">
+      <h3 className="center">Visão geral</h3>
       <div
         style={{
           paddingTop: '20px',
