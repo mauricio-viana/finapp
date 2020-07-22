@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+.container-main {
+  margin: 0 auto;
+  width: 80%;
+  align-content: center;
+}
+
 .card-transaction {
   display: flex;
   flex-flow: row wrap;
