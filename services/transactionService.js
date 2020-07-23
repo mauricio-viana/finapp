@@ -42,7 +42,6 @@ const objectStructure = (objectReq) => {
     month: Number(dateResult[1]),
     day: Number(dateResult[2]),
   };
-  console.log(objectData);
   return objectData;
 };
 
