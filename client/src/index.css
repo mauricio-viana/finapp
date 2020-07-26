@@ -12,13 +12,74 @@ code {
     monospace;
 }
 
+.font-normal {
+  font-size: 1.1rem;
+}
+
+.font-medium {
+  font-size: 1.5rem;
+}
+
+.font-large {
+  font-size: 1.8rem;
+}
+
+.font-xlarge {
+  font-size: 2.1rem;
+}
+
+header .navbar-home {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 80%;
+}
+
+header .navbar-home .content-header {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .container-main {
   margin: 0 auto;
   width: 80%;
   align-content: center;
 }
 
-.card-transaction {
+#transaction-list .content-search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#transaction-list .content-search div {
+  margin-left: 10px;
+  display: flex;
+  flex: 1 1 0%;
+}
+
+.new-date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.new-date span {
+  font-size: 0.8rem;
+  border: 1px solid lightgray;
+  border-radius: 50px;
+  padding: 4px 16px;
+  background-color: #e4e2e2;
+}
+
+#card-transaction {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -27,16 +88,14 @@ code {
   border-radius: 4px;
   padding: 5px;
   margin: 5px 0px;
-  /* background-color: rgb(161, 240, 220); */
 }
 
-.day-card {
+#card-transaction .day-card {
   margin-right: 8px;
-  font-weight: bold;
   font-size: 1.5rem;
 }
 
-.body-card {
+#card-transaction .body-card {
   display: flex;
   flex: 7 1 0%;
   flex-direction: row;
@@ -44,22 +103,162 @@ code {
   justify-content: space-between;
 }
 
-.card-description {
+#card-transaction .card-description {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.value-card {
+#card-transaction .value-card {
   text-align: right;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
-.div-icons {
+#card-transaction .div-icons {
   margin-left: 10px;
   display: flex;
   flex: 1 1 0%;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+}
+
+#card-transaction .div-icons i {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+#select-period {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#select-period select {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+#select-period button {
+  font-weight: bold;
+}
+
+#panel-overview,
+#pie-chart {
+  flex: 1;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-top: 16px;
+  padding: 15px;
+}
+
+#panel-overview .show-balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid lightgray;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  flex: 1;
+}
+
+#panel-overview .show-balance span {
+  color: gray;
+}
+
+#panel-overview .values {
+  color: gray;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#panel-overview .values-panel {
+  flex: 1;
+  margin-left: 10px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+#panel-overview .results {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---------------------------------------------------------- */
+.title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+}
+
+form fieldset {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+form legend {
+  color: #9e9e9e;
+}
+
+.items-type {
+  display: flex;
+  justify-content: center;
+}
+
+.items-type label {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.items-grid label {
+  background-color: #f5f5f5;
+  list-style: none;
+  border: 2px solid #f5f5f5;
+  border-radius: 8px;
+  height: 90px;
+  padding: 18px 12px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  cursor: pointer;
+}
+
+.items-grid label.selected {
+  background: #e0f2f1;
+  border: 2px solid #4db6ac;
+  color: #4db6ac;
+}
+
+.items-grid li i,
+.items-grid li span {
+  pointer-events: none;
+}
+
+form .field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+form .field-group {
+  display: flex;
 }
