@@ -60,18 +60,16 @@ export default function App() {
       ? await api.update(formData)
       : await api.create(formData);
 
-    if (newTransaction.yearMonth === period) {
-      let newList = isEdit
-        ? Object.assign(
-            [],
-            [
-              ...transactions.filter(({ _id }) => _id !== newTransaction._id),
-              newTransaction,
-            ]
-          )
-        : Object.assign([], [...transactions, newTransaction]);
-      setTransactions(newList);
-    }
+    let newList = isEdit
+      ? Object.assign(
+          [],
+          [
+            ...transactions.filter(({ _id }) => _id !== newTransaction._id),
+            newTransaction,
+          ]
+        )
+      : Object.assign([], [...transactions, newTransaction]);
+    setTransactions(newList);
     setIsModalOpen(false);
   };
 
