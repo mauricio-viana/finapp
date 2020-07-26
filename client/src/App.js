@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import TransactionList from './components/TransactionList';
 import * as api from './api/apiService';
-import SelectPeriod from './components/SelectPeriod';
 import Overview from './components/Overview';
 import M from 'materialize-css';
+import Modal from './components/TransactionModal';
 
 export default function App() {
   const [filterText, setFilterText] = useState('');
   const [listFilter, setListFilter] = useState([]);
   const [transactions, setTransactions] = useState([]);
+  const [dataSelected, setDataSelected] = useState([]);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [period, setPeriod] = useState(
     `${new Date().getFullYear()}-${(new Date().getMonth() + 1)
@@ -29,22 +32,19 @@ export default function App() {
   }, [period]);
 
   React.useEffect(() => {
-    const newFilterList = () => {
-      const newList =
-        filterText.length > 0
-          ? transactions
-              .filter((item) => {
-                const textDescription = item.description.toLowerCase();
-                if (textDescription.indexOf(filterText) >= 0) return item;
-              })
-              .sort((a, b) => a.day - b.day)
-          : Object.assign(
-              [],
-              transactions.sort((a, b) => a.day - b.day)
-            );
-      setListFilter(newList);
-    };
-    newFilterList();
+    const newList =
+      filterText.length > 0
+        ? transactions
+            .filter((item) => {
+              const textDescription = item.description.toLowerCase();
+              return textDescription.indexOf(filterText.toLowerCase()) >= 0;
+            })
+            .sort((a, b) => a.day - b.day)
+        : Object.assign(
+            [],
+            transactions.sort((a, b) => a.day - b.day)
+          );
+    setListFilter(newList);
   }, [transactions, filterText]);
 
   const hadleChangeSelected = (newPeriod) => {
@@ -62,16 +62,17 @@ export default function App() {
 
     if (newTransaction.yearMonth === period) {
       let newList = isEdit
-        ? Object.assign([], [...transactions, newTransaction])
-        : Object.assign(
+        ? Object.assign(
             [],
             [
               ...transactions.filter(({ _id }) => _id !== newTransaction._id),
               newTransaction,
             ]
-          );
+          )
+        : Object.assign([], [...transactions, newTransaction]);
       setTransactions(newList);
     }
+    setIsModalOpen(false);
   };
 
   const handleRemove = async (id) => {
@@ -81,42 +82,44 @@ export default function App() {
     setTransactions(newList);
   };
 
+  const handlePersist = () => {
+    const newFormData = {
+      value: 0,
+      category: 'Outros',
+      description: '',
+      type: '-',
+      yearMonthDay: `${new Date().getFullYear()}-${(new Date().getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}-${new Date().getDate()}`,
+    };
+    setIsEdit(false);
+    setDataSelected(newFormData);
+    setIsModalOpen(true);
+  };
+
+  const handleEditData = (data) => {
+    setDataSelected(data);
+    setIsEdit(true);
+    setIsModalOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <header>
         <div className="navbar-fixed">
-          <nav className="blue-grey lighten-2">
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                margin: '0 auto',
-                width: '80%',
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  lineHeight: 'normal',
-                  alignItems: 'flex-start',
-                  justifyContent: 'center',
-                }}
-              >
-                <strong style={{ fontSize: '2rem' }}>
+          <nav className="teal">
+            <div className="navbar-home">
+              <div className="content-header">
+                <strong className="font-xlarge">
                   Controle Financeiro Pessoal
                 </strong>
-
-                <span style={{ fontSize: '1.1rem' }}>
+                <span className="font-medium">
                   Bootcamp Full Stack - Desafio Final
                 </span>
-              </div>
-              <div>
-                <SelectPeriod
-                  onChangeSelected={hadleChangeSelected}
-                  period={period}
-                />
               </div>
             </div>
           </nav>
@@ -124,17 +127,35 @@ export default function App() {
       </header>
 
       <main className="container-main">
-        <div className="row">
-          <TransactionList
-            listFilter={listFilter}
-            filterText={filterText}
-            onFilterText={handleFilterText}
-            onPersist={handlePersistData}
-            onRemove={handleRemove}
-          />
-          <Overview listFilter={listFilter} />
-        </div>
+        {transactions.length > 0 && (
+          <div className="row">
+            <Overview
+              listFilter={listFilter}
+              period={period}
+              onPeriod={hadleChangeSelected}
+              isModalOpen={isModalOpen}
+            />
+            <TransactionList
+              listFilter={listFilter}
+              filterText={filterText}
+              onFilterText={handleFilterText}
+              onRemove={handleRemove}
+              onNew={handlePersist}
+              onEdit={handleEditData}
+              isModalOpen={isModalOpen}
+            />
+          </div>
+        )}
       </main>
+
+      {isModalOpen && (
+        <Modal
+          onSave={handlePersistData}
+          dataSelected={dataSelected}
+          isEdit={isEdit}
+          onClose={handleClose}
+        />
+      )}
     </>
   );
 }

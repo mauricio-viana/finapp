@@ -3,22 +3,7 @@ import Chart from 'react-google-charts';
 
 export default function PieChart({ dataCategories }) {
   const pieOptions = {
-    title: 'teste',
     pieHole: 0.5,
-    slices: [
-      {
-        color: '#2BB673',
-      },
-      {
-        color: '#d91e48',
-      },
-      {
-        color: '#007fad',
-      },
-      {
-        color: '#e9a227',
-      },
-    ],
     legend: {
       position: 'bottom',
       alignment: 'center',

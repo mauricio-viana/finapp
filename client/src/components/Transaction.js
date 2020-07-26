@@ -1,39 +1,66 @@
 import React from 'react';
 import { formatMoney } from '../helpers/formatNumber';
-import Action from './Action';
+import { getDescriptionMonth } from '../helpers/monthsYears';
 
-export default function Transaction({ data, onRemoveData, onEdit }) {
-  const { _id, category, day, description, value, yearMonthDay } = data;
+export default function Transaction({
+  data,
+  onRemoveData,
+  onEditData,
+  newDay,
+}) {
+  const {
+    _id,
+    type,
+    category,
+    day,
+    description,
+    value,
+    yearMonthDay,
+    month,
+  } = data;
 
-  const colorTransaction = {
-    credit: 'card-transaction deep-orange lighten-2',
-    debit: 'deep-orange lighten-2',
-  };
+  const classColor =
+    data.type === '-' ? 'deep-orange lighten-2' : 'green lighten-4';
 
-  const handleActionClick = (id, type) => {
-    if (type === 'delete') {
-      onRemoveData(id);
-      return;
-    }
-    onEdit({ _id, category, day, description, value, yearMonthDay });
+  const handleActionClick = () => {
+    onEditData({
+      _id,
+      type,
+      category,
+      day,
+      description,
+      value,
+      yearMonthDay,
+    });
   };
 
   return (
-    <div className={colorTransaction.credit}>
-      <span className="day-card">{day.toString().padStart(2, '0')}</span>
-      <div className="body-card">
-        <div className="card-description">
-          <strong style={{ fontSize: '1.2rem' }}>{category}</strong>
-          <span style={{ fontSize: '1.1rem' }}>{description}</span>
+    <>
+      {newDay && (
+        <div className="new-date">
+          <span>{`${day} de ${getDescriptionMonth(month)}`}</span>
         </div>
-        <div className="value-card">
-          <span>{formatMoney(value)}</span>
+      )}
+      <div id="card-transaction" className={classColor}>
+        <strong className="day-card">{day.toString().padStart(2, '0')}</strong>
+        <div className="body-card">
+          <div className="card-description font-normal">
+            <strong>{category}</strong>
+            <span>{description}</span>
+          </div>
+          <div className="value-card">
+            <span>{formatMoney(value)}</span>
+          </div>
+        </div>
+        <div className="div-icons">
+          <i className="material-icons" onClick={handleActionClick}>
+            edit
+          </i>
+          <i className="material-icons" onClick={() => onRemoveData(_id)}>
+            delete
+          </i>
         </div>
       </div>
-      <div className="div-icons">
-        <Action id={_id} type="edit" onActionClick={handleActionClick} />
-        <Action id={_id} type="delete" onActionClick={handleActionClick} />
-      </div>
-    </div>
+    </>
   );
 }

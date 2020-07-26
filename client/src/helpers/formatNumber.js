@@ -7,8 +7,4 @@ function formatMoney(value) {
   return moneyFormatter.format(value);
 }
 
-function formatPercentage(value) {
-  return `${value.toFixed(2).replace('.', ',')}%`;
-}
-
-export { formatMoney, formatPercentage };
+export { formatMoney };
