@@ -17,25 +17,18 @@ export default function PieChart({ dataCategories }) {
     },
     chartArea: {
       left: 0,
-      top: 10,
+      top: 12,
       width: '100%',
       height: '90%',
     },
+    width: '100%',
   };
 
   const pieData = [['Category', 'Value'], ...dataCategories];
   return (
     <div id="pie-chart" className="center">
       <span className="font-large">Despesas por categoria</span>
-
-      <Chart
-        width={'100%'}
-        height={'500px'}
-        chartType="PieChart"
-        data={pieData}
-        options={pieOptions}
-        rootProps={{ 'data-testid': '3' }}
-      />
+      <Chart chartType="PieChart" data={pieData} options={pieOptions} />
     </div>
   );
 }

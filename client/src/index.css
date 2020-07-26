@@ -31,7 +31,6 @@ code {
 header .navbar-home {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   margin: 0 auto;
   width: 80%;
 }
@@ -40,7 +39,6 @@ header .navbar-home .content-header {
   display: flex;
   flex-direction: column;
   line-height: normal;
-  align-items: flex-start;
   justify-content: center;
 }
 
@@ -153,6 +151,10 @@ header .navbar-home .content-header {
   padding: 15px;
 }
 
+#pie-chart div {
+  height: 500px;
+}
+
 #panel-overview .show-balance {
   display: flex;
   flex-direction: column;
@@ -261,4 +263,103 @@ form .field {
 
 form .field-group {
   display: flex;
+}
+
+@media (max-width: 1060px) {
+  #panel-overview .results {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #panel-overview .show-balance {
+    margin: 0px 0px 5px 0px;
+    padding: 5px;
+  }
+
+  #panel-overview .values-panel {
+    margin: 5px 0px;
+    padding: 5px;
+  }
+
+  #pie-chart div {
+    height: 300px;
+  }
+
+  #card-transaction .day-card {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  header .navbar-home {
+    margin: 0 auto;
+    width: 98%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .content-header span {
+    display: none;
+  }
+
+  .container-main {
+    margin: 0 auto;
+    width: 98%;
+    align-content: center;
+  }
+
+  .container-main .row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container-main .row .col.s6 {
+    width: 100%;
+  }
+
+  #select-period button {
+    display: none;
+  }
+
+  #select-period select {
+    margin: 0;
+  }
+
+  #pie-chart {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  header .navbar-home {
+    margin: 0 auto;
+    width: 98%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header .navbar-home strong {
+    text-align: center;
+    font-size: 1.8rem;
+  }
+
+  #transaction-list h4 {
+    margin-bottom: 0px;
+    font-size: 1.5rem;
+  }
+
+  #transaction-list .new-date {
+    margin: 5px 0px;
+  }
+
+  #transaction-list .value-card span {
+    font-size: 1.5rem;
+  }
+
+  #transaction-list .div-icons {
+    display: flex;
+    flex-direction: column;
+  }
 }
