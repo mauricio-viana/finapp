@@ -12,6 +12,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-google-charts": "3.0.15",
+    "react-modal": "3.11.2",
     "react-scripts": "3.4.1"
   },
   "scripts": {
