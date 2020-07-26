@@ -12,6 +12,7 @@ export default function App() {
   const [dataSelected, setDataSelected] = useState([]);
   const [isEdit, setIsEdit] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPreloader, setIsPreloader] = useState(false);
 
   const [period, setPeriod] = useState(
     `${new Date().getFullYear()}-${(new Date().getMonth() + 1)
@@ -29,9 +30,11 @@ export default function App() {
       setTransactions(newList.transactions);
     };
     getTransactionsList();
+    setIsPreloader(false);
   }, [period]);
 
   React.useEffect(() => {
+    setIsPreloader(true);
     const newList =
       filterText.length > 0
         ? transactions
@@ -132,6 +135,7 @@ export default function App() {
               period={period}
               onPeriod={hadleChangeSelected}
               isModalOpen={isModalOpen}
+              isPreloader={isPreloader}
             />
             <TransactionList
               listFilter={listFilter}

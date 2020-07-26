@@ -8,6 +8,7 @@ export default function Overview({
   period,
   onPeriod,
   isModalOpen,
+  isPreloader,
 }) {
   let totalTransaction = 0;
   let totalCredit = 0;
@@ -51,36 +52,43 @@ export default function Overview({
       )}
 
       <div className="results">
-        <div className="show-balance">
-          <div className="font-xlarge">
-            <strong className={classBalance}>{formatMoney(balance)}</strong>
+        {!isPreloader ? (
+          <div className="progress">
+            <div className="indeterminate"></div>
           </div>
-          <span className="font-normal">Saldo atual em contas</span>
-        </div>
+        ) : (
+          <>
+            <div className="show-balance">
+              <div className="font-xlarge">
+                <strong className={classBalance}>{formatMoney(balance)}</strong>
+              </div>
+              <span className="font-normal">Saldo atual em contas</span>
+            </div>
 
-        <div className="values-panel">
-          <div className="font-normal values">
-            <strong>Receitas:</strong>
-            <strong className="green-text text-green">
-              {formatMoney(totalCredit)}
-            </strong>
-          </div>
+            <div className="values-panel">
+              <div className="font-normal values">
+                <strong>Receitas:</strong>
+                <strong className="green-text text-green">
+                  {formatMoney(totalCredit)}
+                </strong>
+              </div>
 
-          <div className="font-normal values">
-            <strong>Despesas:</strong>
-            <strong className="red-text text-red accent-2">
-              {formatMoney(totalDebit)}
-            </strong>
-          </div>
+              <div className="font-normal values">
+                <strong>Despesas:</strong>
+                <strong className="red-text text-red accent-2">
+                  {formatMoney(totalDebit)}
+                </strong>
+              </div>
 
-          <div className="font-normal values">
-            <strong>Lançamentos:</strong>
-            <strong> {totalTransaction}</strong>
-          </div>
-        </div>
+              <div className="font-normal values">
+                <strong>Lançamentos:</strong>
+                <strong> {totalTransaction}</strong>
+              </div>
+            </div>
+          </>
+        )}
       </div>
-
-      <PieChart dataCategories={dataCategories} />
+      {isPreloader && <PieChart dataCategories={dataCategories} />}
     </div>
   );
 }
