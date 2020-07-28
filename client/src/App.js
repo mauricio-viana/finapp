@@ -128,26 +128,24 @@ export default function App() {
       </header>
 
       <main className="container-main">
-        {transactions.length > 0 && (
-          <div className="row">
-            <Overview
-              listFilter={listFilter}
-              period={period}
-              onPeriod={hadleChangeSelected}
-              isModalOpen={isModalOpen}
-              isPreloader={isPreloader}
-            />
-            <TransactionList
-              listFilter={listFilter}
-              filterText={filterText}
-              onFilterText={handleFilterText}
-              onRemove={handleRemove}
-              onNew={handlePersist}
-              onEdit={handleEditData}
-              isModalOpen={isModalOpen}
-            />
-          </div>
-        )}
+        <div className="row">
+          <Overview
+            listFilter={listFilter}
+            period={period}
+            onPeriod={hadleChangeSelected}
+            isModalOpen={isModalOpen}
+            isPreloader={isPreloader}
+          />
+          <TransactionList
+            listFilter={listFilter}
+            filterText={filterText}
+            onFilterText={handleFilterText}
+            onRemove={handleRemove}
+            onNew={handlePersist}
+            onEdit={handleEditData}
+            isModalOpen={isModalOpen}
+          />
+        </div>
       </main>
 
       {isModalOpen && (
