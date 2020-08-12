@@ -1,5 +1,6 @@
 import React from 'react';
 import Chart from 'react-google-charts';
+import './styles.css';
 
 export default function PieChart({ dataCategories }) {
   const pieOptions = {

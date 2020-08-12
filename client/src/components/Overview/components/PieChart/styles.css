@@ -1,0 +1,23 @@
+#pie-chart {
+  flex: 1;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-top: 16px;
+  padding: 15px;
+}
+
+#pie-chart div {
+  height: 500px;
+}
+
+@media (max-width: 1060px) {
+  #pie-chart div {
+    height: 300px;
+  }
+}
+
+@media (max-width: 800px) {
+  #pie-chart {
+    display: none;
+  }
+}

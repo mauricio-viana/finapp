@@ -1,0 +1,86 @@
+.new-date {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.new-date span {
+  font-size: 0.8rem;
+  border: 1px solid lightgray;
+  border-radius: 50px;
+  padding: 4px 16px;
+  background-color: #e4e2e2;
+}
+
+#card-transaction {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 5px 0px;
+}
+
+#card-transaction .day-card {
+  margin-right: 8px;
+  font-size: 1.5rem;
+}
+
+#card-transaction .body-card {
+  display: flex;
+  flex: 7 1 0%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#card-transaction .card-description {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#card-transaction .value-card {
+  text-align: right;
+  font-size: 2rem;
+}
+
+#card-transaction .div-icons {
+  margin-left: 10px;
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#card-transaction .div-icons i {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+@media (max-width: 400px) {
+  .new-date {
+    margin: 5px 0px;
+  }
+
+  .value-card span {
+    font-size: 1.5rem;
+  }
+
+  .div-icons {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1060px) {
+  #card-transaction .day-card {
+    display: none;
+  }
+}

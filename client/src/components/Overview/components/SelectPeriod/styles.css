@@ -1,0 +1,25 @@
+#select-period {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#select-period select {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+#select-period button {
+  font-weight: bold;
+}
+
+@media (max-width: 800px) {
+  #select-period button {
+    display: none;
+  }
+
+  #select-period select {
+    margin: 0;
+  }
+}

@@ -1,7 +1,8 @@
 import React from 'react';
-import { formatMoney } from '../helpers/formatNumber';
-import SelectPeriod from './SelectPeriod';
-import PieChart from './PieChart';
+import { formatMoney } from '../../helpers/formatNumber';
+import SelectPeriod from './components/SelectPeriod';
+import PieChart from './components/PieChart';
+import './styles.css';
 
 export default function Overview({
   listFilter,

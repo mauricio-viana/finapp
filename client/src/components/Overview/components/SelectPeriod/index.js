@@ -1,6 +1,7 @@
 import React from 'react';
-import { getPeriod } from '../helpers/monthsYears';
+import { getPeriod } from '../../../../helpers/monthsYears';
 import { useState } from 'react';
+import './styles.css';
 
 const PERIOD_MONTH_YEAR = getPeriod();
 

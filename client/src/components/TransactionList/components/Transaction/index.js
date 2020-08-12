@@ -1,6 +1,7 @@
 import React from 'react';
-import { formatMoney } from '../helpers/formatNumber';
-import { getDescriptionMonth } from '../helpers/monthsYears';
+import { formatMoney } from '../../../../helpers/formatNumber';
+import { getDescriptionMonth } from '../../../../helpers/monthsYears';
+import './styles.css';
 
 export default function Transaction({
   data,

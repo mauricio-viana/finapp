@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import './styles.css';
 
 const CUSTOM_STYLE_MODAL = {
   overlay: {
@@ -17,6 +18,7 @@ const CUSTOM_STYLE_MODAL = {
 };
 
 Modal.setAppElement('#root');
+
 export default function TransactionModal(props) {
   const { onSave, dataSelected, isEdit, onClose } = props;
   const [formData, setFormData] = useState(dataSelected);

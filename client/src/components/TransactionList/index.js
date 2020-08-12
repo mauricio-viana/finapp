@@ -1,6 +1,7 @@
 import React from 'react';
-import Transaction from './Transaction';
-import SearchDescription from './SearchDescription';
+import Transaction from './components/Transaction';
+import SearchDescription from './components/SearchDescription';
+import './styles.css';
 
 export default function TransactionList(props) {
   const {

@@ -1,0 +1,19 @@
+#transaction-list .content-search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#transaction-list .content-search div {
+  margin-left: 10px;
+  display: flex;
+  flex: 1 1 0%;
+}
+
+@media (max-width: 400px) {
+  #transaction-list h4 {
+    margin-bottom: 0px;
+    font-size: 1.5rem;
+  }
+}
